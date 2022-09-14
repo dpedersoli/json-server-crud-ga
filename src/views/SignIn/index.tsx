@@ -5,7 +5,7 @@ import { api } from '../../services/api'
 
 import { Container } from './style'
 import { toast } from 'react-toastify'
-
+import { Loader } from '../../components/Loader'
 
 interface IData {
   email: string;
@@ -14,7 +14,7 @@ interface IData {
 
 export const SignIn = () => {
   const [data, setData] = useState<IData>({} as IData)
-  const [load, setLoad] = useState(false)
+  const [load, setLoad] = useState(true)
 
   let navigate = useNavigate();
 
@@ -40,11 +40,7 @@ export const SignIn = () => {
   }, [data, navigate]);
 
   if (load) {
-    return (
-      <div>
-        <p>Aguarde, carregando...</p>
-      </div>
-    )
+    return <Loader />
   }
 
   return (
