@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { api } from '../../services/api'
 
 import { Container } from './style'
+
 import { toast } from 'react-toastify'
 import { Loader } from '../../components/Loader'
 
@@ -14,7 +15,7 @@ interface IData {
 
 export const SignIn = () => {
   const [data, setData] = useState<IData>({} as IData)
-  const [load, setLoad] = useState(true)
+  const [load, setLoad] = useState(false)
 
   let navigate = useNavigate();
 
@@ -24,12 +25,11 @@ export const SignIn = () => {
 
     api.post('register', data)
       .then((response) => {
-        if (response.status === 201) {
+        if (response.status === 201) { //aqui na verdade, quando estiver funcionando, o 'response.status' tem que ser '=== 200' -> não funciona pq não sei gerar JWT mockado
+          const token = response.data
+          localStorage.setItem('@gamaServiceToken', token)
           setLoad(false)
-          toast.success('Cadastro realizado com sucesso!', {
-            hideProgressBar: false,
-            onClose: () => navigate('/signin')
-          })
+          navigate('/dashboard')
         }
       })
       .catch(() => {

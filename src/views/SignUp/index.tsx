@@ -4,8 +4,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { api } from '../../services/api'
 
 import { Container } from './style'
-import { toast } from 'react-toastify'
 
+import { toast } from 'react-toastify'
+import { Loader } from '../../components/Loader'
 
 interface IData {
   name: string;
@@ -28,7 +29,7 @@ export const SignUp = () => {
         if (response.status === 201) {
           setLoad(false)
           toast.success('Cadastro realizado com sucesso!', {
-            hideProgressBar: false,
+            hideProgressBar: true,
             onClose: () => navigate('/signin')
           })
         }
@@ -41,11 +42,7 @@ export const SignUp = () => {
   }, [data, navigate]);
 
   if (load) {
-    return (
-      <div>
-        <p>Aguarde, carregando...</p>
-      </div>
-    )
+    return <Loader />
   }
 
   return (
