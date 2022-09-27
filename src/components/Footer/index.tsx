@@ -1,11 +1,9 @@
-import { Container } from './style'
+import { FooterTag } from './style'
 
 export const Footer = () => {
   return (
-    <div>
-      <footer>
-        <p>Rodapé</p>
-      </footer>
-    </div>
+    <FooterTag>
+      <p>Rodapé</p>
+    </FooterTag>
   )
 }

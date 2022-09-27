@@ -7,7 +7,7 @@ export const NavBar = styled.div`
   margin: 12px 0;
 
     img{ 
-      max-width:200px;
+      max-width:50px;
       height: auto;
     }
 

@@ -26,8 +26,8 @@ export const SignIn = () => {
     api.post('register', data)
       .then((response) => {
         if (response.status === 201) { //aqui na verdade, quando estiver funcionando, o 'response.status' tem que ser '=== 200' -> não funciona pq não sei gerar JWT mockado
-          const token = response.data
-          localStorage.setItem('@gamaServiceToken', token)
+          const token = response.data;
+          localStorage.setItem("@token", token);
           setLoad(false)
           navigate('/dashboard')
         }

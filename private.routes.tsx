@@ -1,12 +1,10 @@
-//aqui eu identifico a condição do JWT do usuário baseado no seu locaStorage, dessa forma direcionando ele para a página determinada
-import { Route, Navigate } from 'react-router-dom'
+//aqui eu identifico a condição do JWT do usuário baseado no seu locaStorage (se o token estiver expirado (o tempo de vida do token for maior do que o tempo limite estipulado), ele direciona o usuário que tentou acessar o 'dashboard' para a tela de 'signin'), dessa forma direcionando ele para a página determinada
+import { Navigate, Outlet } from 'react-router-dom'
 
 import jwt_decode from 'jwt-decode'
 
-export const PrivateRoute: any = ({ component: Component, path: Path, ...rest }: any) => { // eu passei um 'any' determinando que essa função 'PrivateRoute' poderá retornar qualquer tipo de dado
-  const isLoggedIn: string | null = localStorage.getItem('@gamaServiceToken') //toda vez que passo ':' depois de uma 'const'/'var' é quando eu seto a tipagem/type dele, que nesse caso é um dado do tipo 'string' ou do tipo 'null'
-
-  const navigate = Navigate;
+export const PrivateRoutes: any = () => { // eu passei um 'any' determinando que essa função 'PrivateRoute' poderá retornar qualquer tipo de dado
+  const isLoggedIn: string | null = localStorage.getItem('@token') //toda vez que passo ':' depois de uma 'const'/'var' é quando eu seto a tipagem/type dele, que nesse caso é um dado do tipo 'string' ou do tipo 'null'
 
   const isSectionActive: any = () => {
     if (isLoggedIn === null) {
@@ -22,12 +20,6 @@ export const PrivateRoute: any = ({ component: Component, path: Path, ...rest }:
   }
 
   return (
-    <>
-      {/*
-      <Route {...rest} render={props => (
-        isSectionActive() ? <Component {...props} /> : navigate('/')
-      )}/>
-    */}
-    </>
+    isSectionActive() ? <Outlet /> : <Navigate to="/signin" />
   )
 }
