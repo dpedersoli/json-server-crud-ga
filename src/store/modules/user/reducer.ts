@@ -1,10 +1,27 @@
-import { IUser } from './types'
+import { Reducer } from 'redux'
+import { IGlobalState } from './types'
 
-export const addNewUser = (user: IUser) => {
+const INITIAL_STATE: IGlobalState = {
+  users: []
+}
 
-  return {
-    //está tudo em UPPERCASE para determinar que se trata de uma Reducer
-    type: 'ADD_USER',
-    payload: user
+const AllUsers: Reducer<IGlobalState | any> = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case 'ADD_USER': {
+      const { user } = action.payload
+
+      return {
+        ...state,
+        users: [
+          ...state.users,
+          user
+        ]
+      }
+    }
+    default: {
+      return state
+    }
   }
 }
+
+export default AllUsers

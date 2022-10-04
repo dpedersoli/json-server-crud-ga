@@ -1,28 +1,10 @@
-import { Reducer } from 'redux'
-import { IUsers } from './types'
+import { IUser } from './types'
 
-const INITIAL_STATE: IUsers = {
-  users: []
-}
+export const addNewUser = (user: IUser) => {
 
-const AllUsers: Reducer<IUsers | null> = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case 'ADD_USER': {
-      console.log(action)
-      const { user } = action.payload
-
-      return {
-        ...state,
-        users: [
-          ...state.users,
-          user
-        ]
-      }
-    }
-    default: {
-      return state
-    }
+  return {
+    //está tudo em UPPERCASE para determinar que se trata de uma Reducer
+    type: 'ADD_USER',
+    payload: user
   }
 }
-
-export default AllUsers

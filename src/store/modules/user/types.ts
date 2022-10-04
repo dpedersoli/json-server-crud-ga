@@ -8,6 +8,6 @@ export interface IUser {
   }
 }
 
-export interface IUsers {
+export interface IGlobalState {
   users: IUser[] //determino que aqui estou criando uma array com todos os 'IUser'
 }

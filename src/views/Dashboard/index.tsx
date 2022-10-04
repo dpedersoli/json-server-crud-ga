@@ -1,4 +1,8 @@
 import { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import { addNewUser } from '../../store/modules/user/action'
 
 import { Container } from './style'
 
@@ -18,7 +22,9 @@ interface ICollaborator {
 export const Dashboard = () => {
   const [data, setData] = useState<ICollaborator[]>([]) //aqui eu determinei que o tipo dos dados serão relativos aos determinados na interface de 'ICollaborator', e que serão estruturados dentro de uma 'array'
   const [isLoad, setIsLoad] = useState(false)
-  const token = localStorage.getItem('@token')
+  const token = localStorage.getItem('@token')?.replace(/["]/g, '') //regex para ajudar a determinar os caracteres do replace -> replace foi passado pelo fato do 'token' estar vindo como string
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
     api.get('collaborator', {
@@ -31,6 +37,10 @@ export const Dashboard = () => {
       setData(response.data)
     }).finally(() => setIsLoad(false))
   }, [token])
+
+  useEffect(() => {
+    data?.map(user => dispatch((addNewUser(user)))) //passei o 'dispatch' em seu chamaamento entre dois parênteses para chamar a função de forma simultanea
+  }, [data, dispatch])
 
   if (isLoad) {
     return <Loader />
@@ -52,6 +62,7 @@ export const Dashboard = () => {
             </div>
           ))}
         </div>
+        <Link to="/"> Retornar para Home</Link>
       </div>
     </Container>
   )

@@ -1,0 +1,58 @@
+{
+  "users": [
+    {
+      "email": "tes@ters",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "email": "tes@ters",
+      "password": "123456",
+      "id": 2
+    }
+  ],
+  "register": [
+    {
+      "name": "tester",
+      "email": "ter@ters",
+      "password": "123456",
+      "id": 1
+    },
+    {
+      "email": "asdasd@asdasd",
+      "password": "asd1d1d",
+      "id": 2
+    }
+  ],
+  "avatar": [],
+  "collaborator": [
+    {
+      "name": "colab1",
+      "email": "colab@borator.com",
+      "photo_id": 1,
+      "photo": {
+        "url": "https://picsum.photos/100"
+      },
+      "id": 1
+    },
+    {
+      "name": "colab2",
+      "email": "colab@borator.com",
+      "photo_id": 2,
+      "photo": {
+        "url": "https://picsum.photos/100"
+      },
+      "id": 2
+    },
+    {
+      "name": "colab3",
+      "email": "colab@borator.com",
+      "photo_id": 3,
+      "photo": {
+        "url": "https://picsum.photos/100"
+      },
+      "id": 3
+    }
+  ],
+  "auth": []
+}
